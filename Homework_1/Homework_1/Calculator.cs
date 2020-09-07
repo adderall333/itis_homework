@@ -1,48 +1,24 @@
 ﻿using System;
-using System.Linq;
 
 namespace Homework_1
 {
-    partial class Program
+    public class Calculator
     {
-        class Calculator
+        public static int Calculate(int a, string @operator, int b)
         {
-            static char[] operators = { '+', '-', '*', '/' };
-
-            int result;
-
-            void NextRequest(string request)
+            return @operator switch
             {
-                request = request.Replace(" ", string.Empty);
-                var operatorIndex = 0;
-                
-                for (int i = 0; i < request.Length; i++)
-                {
-                    if (operators.Contains(request[i]))
-                        operatorIndex = i;
-                }
+                "+" => a + b,
+                "-" => a - b,
+                "*" => a * b,
+                "/" => a / b,
+                _ => throw new NotSupportedException()
+            };
+        }
 
-                var a = int.Parse(request.Substring(0, operatorIndex - 1));
-                var b = int.Parse(request.Substring(operatorIndex + 1));
-                result = MakeCalculation(a, b, request[operatorIndex]);
-            }
-
-            int MakeCalculation(int a, int b, char sign)
-            {
-                switch (sign)
-                {
-                    case '+':
-                        return a + b;
-                    case '-':
-                        return a - b;
-                    case '*':
-                        return a * b;
-                    case '/':
-                        return a / b;
-                    default:
-                        throw new ArgumentException();
-                }
-            }
+        public static int GetNumber()
+        {
+            return int.Parse(Console.ReadLine());
         }
     }
 }
