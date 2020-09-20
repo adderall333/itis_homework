@@ -16,9 +16,9 @@ namespace homework_1
             };
         }
 
-        public static double GetNumber()
+        public static double GetNumber(string input)
         {
-            return double.Parse(Console.ReadLine());
+            return double.Parse(input);
         }
     }
 }
