@@ -8,7 +8,7 @@ on:
 
 defaults:
   run:
-    working-directory: ./homework_1
+    working-directory: ./
 
 jobs:
   build:
@@ -26,7 +26,7 @@ jobs:
     - name: Codecov
       uses: codecov/codecov-action@v1.0.13
       with:
-        file: ./homework_1/report.xml
+        file: ./report.xml
     - name: Install dependencies
       run: dotnet restore
     - name: Build
