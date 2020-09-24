@@ -1,54 +1,76 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<SolutionRoot CoveredStatements="21" TotalStatements="23" CoveragePercent="91" ReportType="Xml" DotCoverVersion="2020.2.1">
-  <Project Name="Calculator" CoveredStatements="3" TotalStatements="3" CoveragePercent="100">
+<Root CoveredStatements="20" TotalStatements="20" CoveragePercent="100" ReportType="DetailedXml" DotCoverVersion="2020.2.1">
+  <FileIndices>
+    <File Index="2" Name="C:\Users\sagad\itis_homework\CalculatorFTests\UnitTest1.fs" ChecksumAlgorithm="SHA256" Checksum="02A132F2E0EC65E1AD98FC98994FEDD169ED351F4F77860B7BD0BD343CF03A2B" />
+    <File Index="1" Name="C:\Users\sagad\itis_homework\CalculatorFTests\Program.fs" ChecksumAlgorithm="SHA256" Checksum="4F31799361E1FCC78E5C9A407ACD5572678219AD28A1782DDF39162B7E9DD3B9" />
+    <File Index="3" Name="C:\Users\sagad\.nuget\packages\microsoft.net.test.sdk\16.8.0-preview-20200812-03\build\netcoreapp2.1\Microsoft.NET.Test.Sdk.Program.cs" ChecksumAlgorithm="SHA256" Checksum="D66F12F9433816A8C7DC1B2ACB9E1010F5418F5EEB51E80F1DF57AA1DCAB8D8A" />
+    <File Index="4" Name="C:\Users\sagad\itis_homework\CalculatorTests\CalculatorTests.cs" ChecksumAlgorithm="SHA256" Checksum="A8CE420D549649EAABEB6629288A9B47D4A6CC8EFFAF90EEEE01FA24E0521DD5" />
+    <File Index="5" Name="C:\Users\sagad\itis_homework\CalculatorTests\obj\Debug\netcoreapp3.1\.NETCoreApp,Version=v3.1.AssemblyAttributes.cs" ChecksumAlgorithm="SHA256" Checksum="609721B0977B4BB4296F30DB82935147EB4A1C0DD665D90D1CA0787FF0F86F1D" />
+    <File Index="6" Name="C:\Users\sagad\itis_homework\CalculatorTests\obj\Debug\netcoreapp3.1\CalculatorTests.AssemblyInfo.cs" ChecksumAlgorithm="SHA256" Checksum="8461DDEA6566C2536C26587B78F21F22D3B649CC0AFBFD00C6FD252CF2D85FDF" />
+    <File Index="7" Name="C:\Users\sagad\itis_homework\CalculatorF\Program.fs" ChecksumAlgorithm="SHA256" Checksum="D2C44031731DBE2328F4C53AD01101A5170AF6E0C2A94C726AAA4A8A936323C9" />
+    <File Index="8" Name="C:\Users\sagad\itis_homework\Calculator\Calculator.cs" ChecksumAlgorithm="SHA256" Checksum="967F31D9E1E015E35E9AD60EACBEA1805F7EC9FF65E9332117E210BE19B402BB" />
+    <File Index="9" Name="C:\Users\sagad\itis_homework\Calculator\Program.cs" ChecksumAlgorithm="SHA256" Checksum="5CA41D36F20D8EF735CC2FB7737399CD3935120AF49E48ABE0C05760B7892DDA" />
+    <File Index="10" Name="C:\Users\sagad\itis_homework\Calculator\obj\Debug\netcoreapp3.1\.NETCoreApp,Version=v3.1.AssemblyAttributes.cs" ChecksumAlgorithm="SHA256" Checksum="609721B0977B4BB4296F30DB82935147EB4A1C0DD665D90D1CA0787FF0F86F1D" />
+    <File Index="11" Name="C:\Users\sagad\itis_homework\Calculator\obj\Debug\netcoreapp3.1\Calculator.AssemblyInfo.cs" ChecksumAlgorithm="SHA256" Checksum="714BE869FD7FD8A1EBC0C5293C8FFD4A5CAC14D843587A3F9AFA85630E46CB3D" />
+  </FileIndices>
+  <Assembly Name="Calculator" CoveredStatements="3" TotalStatements="3" CoveragePercent="100">
     <Namespace Name="homework_1" CoveredStatements="3" TotalStatements="3" CoveragePercent="100">
       <Type Name="Calculator" CoveredStatements="3" TotalStatements="3" CoveragePercent="100">
-        <Method Name="Calculate(double,string,double):double" CoveredStatements="3" TotalStatements="3" CoveragePercent="100" />
+        <Method Name="Calculate(System.Double,System.String,System.Double):System.Double" CoveredStatements="3" TotalStatements="3" CoveragePercent="100">
+          <Statement FileIndex="8" Line="8" Column="9" EndLine="8" EndColumn="10" Covered="True" />
+          <Statement FileIndex="8" Line="9" Column="13" EndLine="16" EndColumn="15" Covered="True" />
+          <Statement FileIndex="8" Line="17" Column="9" EndLine="17" EndColumn="10" Covered="True" />
+        </Method>
       </Type>
+      <Type Name="Program" CoveredStatements="0" TotalStatements="0" CoveragePercent="0" />
     </Namespace>
-  </Project>
-  <Project Name="CalculatorF" CoveredStatements="9" TotalStatements="10" CoveragePercent="90">
-    <Namespace Name="CalculatorF" CoveredStatements="9" TotalStatements="10" CoveragePercent="90">
-      <Type Name="Calculator" CoveredStatements="9" TotalStatements="10" CoveragePercent="90">
-        <Method Name="calculate(double,string,double):double" CoveredStatements="5" TotalStatements="6" CoveragePercent="83" />
-        <Method Name="divide(double,double):double" CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
-        <Method Name="minus(double,double):double" CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
-        <Method Name="multiply(double,double):double" CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
-        <Method Name="plus(double,double):double" CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+  </Assembly>
+  <Assembly Name="CalculatorF" CoveredStatements="10" TotalStatements="10" CoveragePercent="100">
+    <Namespace Name="CalculatorF" CoveredStatements="10" TotalStatements="10" CoveragePercent="100">
+      <Type Name="Calculator" CoveredStatements="10" TotalStatements="10" CoveragePercent="100">
+        <Method Name="calculate(System.Double,System.String,System.Double):System.Double" CoveredStatements="6" TotalStatements="6" CoveragePercent="100">
+          <Statement FileIndex="7" Line="12" Column="9" EndLine="12" EndColumn="28" Covered="True" />
+          <Statement FileIndex="7" Line="13" Column="18" EndLine="13" EndColumn="26" Covered="True" />
+          <Statement FileIndex="7" Line="14" Column="18" EndLine="14" EndColumn="27" Covered="True" />
+          <Statement FileIndex="7" Line="15" Column="18" EndLine="15" EndColumn="30" Covered="True" />
+          <Statement FileIndex="7" Line="16" Column="18" EndLine="16" EndColumn="28" Covered="True" />
+          <Statement FileIndex="7" Line="17" Column="16" EndLine="17" EndColumn="46" Covered="True" />
+        </Method>
+        <Method Name="divide(System.Double,System.Double):System.Double" CoveredStatements="1" TotalStatements="1" CoveragePercent="100">
+          <Statement FileIndex="7" Line="9" Column="22" EndLine="9" EndColumn="27" Covered="True" />
+        </Method>
+        <Method Name="minus(System.Double,System.Double):System.Double" CoveredStatements="1" TotalStatements="1" CoveragePercent="100">
+          <Statement FileIndex="7" Line="7" Column="21" EndLine="7" EndColumn="26" Covered="True" />
+        </Method>
+        <Method Name="multiply(System.Double,System.Double):System.Double" CoveredStatements="1" TotalStatements="1" CoveragePercent="100">
+          <Statement FileIndex="7" Line="8" Column="24" EndLine="8" EndColumn="29" Covered="True" />
+        </Method>
+        <Method Name="plus(System.Double,System.Double):System.Double" CoveredStatements="1" TotalStatements="1" CoveragePercent="100">
+          <Statement FileIndex="7" Line="6" Column="20" EndLine="6" EndColumn="25" Covered="True" />
+        </Method>
       </Type>
+      <Type Name="Program" CoveredStatements="0" TotalStatements="0" CoveragePercent="0" />
     </Namespace>
-  </Project>
-  <Project Name="CalculatorFTests" CoveredStatements="2" TotalStatements="3" CoveragePercent="67">
-    <Namespace Name="&lt;StartupCode$CalculatorFTests&gt;" CoveredStatements="1" TotalStatements="1" CoveragePercent="100">
-      <Type Name="$UnitTest1" CoveredStatements="1" TotalStatements="1" CoveragePercent="100">
-        <Constructor Name="$UnitTest1()" CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
-      </Type>
-    </Namespace>
-    <Namespace Name="CalculatorF" CoveredStatements="1" TotalStatements="1" CoveragePercent="100">
-      <Type Name="CalculatorFTests" CoveredStatements="1" TotalStatements="1" CoveragePercent="100">
-        <Type Name="UnitTests" CoveredStatements="1" TotalStatements="1" CoveragePercent="100">
-          <Property Name="calculateTests:FSharpList&lt;TestCaseData&gt;" CoveredStatements="0" TotalStatements="0" CoveragePercent="0">
-            <PropertyGetter CoveredStatements="0" TotalStatements="0" CoveragePercent="0" />
-          </Property>
-          <Method Name="CalculateTests(double,string,double):double" CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
-        </Type>
-      </Type>
-    </Namespace>
-    <Type Name="Program" CoveredStatements="0" TotalStatements="1" CoveragePercent="0">
-      <Type Name="Program" CoveredStatements="0" TotalStatements="1" CoveragePercent="0">
-        <Method Name="main(string[]):int" CoveredStatements="0" TotalStatements="1" CoveragePercent="0" />
-      </Type>
-    </Type>
-  </Project>
-  <Project Name="CalculatorTests" CoveredStatements="7" TotalStatements="7" CoveragePercent="100">
+  </Assembly>
+  <Assembly Name="CalculatorTests" CoveredStatements="7" TotalStatements="7" CoveragePercent="100">
     <Namespace Name="CalculatorTests" CoveredStatements="7" TotalStatements="7" CoveragePercent="100">
       <Type Name="CalculatorTests" CoveredStatements="7" TotalStatements="7" CoveragePercent="100">
-        <Method Name="CalculateTests(double,string,double,double):void" CoveredStatements="3" TotalStatements="3" CoveragePercent="100" />
-        <Method Name="WrongInputTest():void" CoveredStatements="4" TotalStatements="4" CoveragePercent="100">
-          <OwnCoverage CoveredStatements="3" TotalStatements="3" CoveragePercent="100" />
-          <AnonymousMethod Name="():void" CoveredStatements="1" TotalStatements="1" CoveragePercent="100" />
+        <Type Name="&lt;&gt;c" CoveredStatements="1" TotalStatements="1" CoveragePercent="100">
+          <Method Name="&lt;WrongInputTest&gt;b__1_0():System.Void" CoveredStatements="1" TotalStatements="1" CoveragePercent="100">
+            <Statement FileIndex="4" Line="25" Column="56" EndLine="25" EndColumn="87" Covered="True" />
+          </Method>
+        </Type>
+        <Method Name="CalculateTests(System.Double,System.String,System.Double,System.Double):System.Void" CoveredStatements="3" TotalStatements="3" CoveragePercent="100">
+          <Statement FileIndex="4" Line="18" Column="9" EndLine="18" EndColumn="10" Covered="True" />
+          <Statement FileIndex="4" Line="19" Column="13" EndLine="19" EndColumn="82" Covered="True" />
+          <Statement FileIndex="4" Line="20" Column="9" EndLine="20" EndColumn="10" Covered="True" />
+        </Method>
+        <Method Name="WrongInputTest():System.Void" CoveredStatements="3" TotalStatements="3" CoveragePercent="100">
+          <Statement FileIndex="4" Line="24" Column="9" EndLine="24" EndColumn="10" Covered="True" />
+          <Statement FileIndex="4" Line="25" Column="13" EndLine="25" EndColumn="89" Covered="True" />
+          <Statement FileIndex="4" Line="26" Column="9" EndLine="26" EndColumn="10" Covered="True" />
         </Method>
       </Type>
     </Namespace>
-  </Project>
-</SolutionRoot>
+  </Assembly>
+</Root>
