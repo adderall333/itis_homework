@@ -26,14 +26,4 @@ module CalculatorFTests =
         [<TestCaseSource("calculateTests")>]
         let CalculateTests x operator y = 
             calculate x operator y
-     
-    //тест заработает, если мне разрешат выбрасывать исключения на неправильный ввод
-    //иначе эта часть программы в целом не тестируема
-    
-    //type ``wrongInput tests``() =
-        
-    //    [<Test>]
-    //    member __.``Operator "#" is not supported``() =
-    //        (fun () -> calculate 5.0 "#" 3.0 |> ignore)
-    //        |> should throw typeof<NotSupportedException>
         
