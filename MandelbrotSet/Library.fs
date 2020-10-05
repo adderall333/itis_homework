@@ -14,7 +14,7 @@ let square z = { a = z.a * z.a - z.b * z.b; b = 2.0 * z.a * z.b }
 
 let f z c = sum (square z) c
 
-let accuracy = 100
+let accuracy = 50
 
 let check c =
     let mutable z = { a = 0.0; b = 0.0 }
