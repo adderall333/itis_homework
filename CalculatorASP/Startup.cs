@@ -23,8 +23,6 @@ namespace CalculatorASP
         {
             app.Run(async context =>
             {
-                //var parameters = 
-                //var val1 = context
                 var parameters = HttpUtility.ParseQueryString(context.Request.QueryString.Value);
                 int val1, val2;
                 var operation = parameters.Get("operation"); ;
