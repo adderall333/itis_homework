@@ -31,8 +31,12 @@ module Calculator =
         async{
                 let httpClient = new HttpClient()
                 let! response = httpClient.GetAsync(url) |> Async.AwaitTask
-                let! content = response.Content.ReadAsStringAsync() |> Async.AwaitTask
-                return content |> Some
+                if response.StatusCode = HttpStatusCode.OK
+                then
+                    let! content = response.Content.ReadAsStringAsync() |> Async.AwaitTask
+                    return content |> Some
+                else
+                    return None
         }
         
     let GetResult val1 operator val2 =
