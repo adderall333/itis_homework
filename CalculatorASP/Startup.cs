@@ -24,11 +24,11 @@ namespace CalculatorASP
             app.Run(async context =>
             {
                 var parameters = HttpUtility.ParseQueryString(context.Request.QueryString.Value);
-                int val1, val2;
+                double val1, val2;
                 var operation = parameters.Get("operation"); ;
                 if (SupportedOperators.Contains(operation) &&
-                    Int32.TryParse(parameters.Get("val1"), out val1) &&
-                    Int32.TryParse(parameters.Get("val2"), out val2))
+                    Double.TryParse(parameters.Get("val1"), out val1) &&
+                    Double.TryParse(parameters.Get("val2"), out val2))
                 {
                     var result = Calculator.Calculate(val1, operation, val2).ToString();
                     await context.Response.WriteAsync(result);
