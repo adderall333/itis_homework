@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using System.Net.Http;
 
 namespace ClientExpressions
 {
@@ -6,7 +8,8 @@ namespace ClientExpressions
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var query = Console.ReadLine();
+            Console.WriteLine(Calculator.CalculateAsync(query).Result);
         }
     }
 }

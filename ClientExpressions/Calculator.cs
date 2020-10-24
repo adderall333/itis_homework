@@ -1,6 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Net.Http;
+using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 
 namespace ClientExpressions
 {
@@ -9,10 +14,11 @@ namespace ClientExpressions
         private static char[] lessPriorityOperators = {'+', '-'};
         private static char[] morePriorityOperators = {'/', '*'};
         
-        public static Result Calculate(string query)
+        public static async Task<double> CalculateAsync(string query)
         {
             var expressionTree = GetExpressionTree(query);
-            return null;
+            var result = await ProcessInParallelAsync(expressionTree);
+            return result.Result;
         }
         
         public static Expression GetExpressionTree(string str)
@@ -100,5 +106,49 @@ namespace ClientExpressions
                 '/' => Expression.Divide(left, right),
                 _ => throw new ArgumentException()
             };
+
+        private static string GetOperation(Expression expression)
+            => expression.NodeType switch
+            {
+                ExpressionType.Add => "%2B",
+                ExpressionType.Subtract => "-",
+                ExpressionType.Multiply => "*",
+                ExpressionType.Divide => "/",
+                _ => throw new ArgumentException()
+            };
+
+        private static async Task<ExpressionResult> ProcessInParallelAsync(Expression expression)
+        {
+            var visitor = new CalculatorExpressionVisitor();
+            var lazy = new Dictionary<ExpressionResult, Lazy<Task>>();
+            var executeBefore = visitor.GetExecuteBefore(expression);
+            var res = executeBefore.Last().Key;
+            foreach (var (exp, exps) in executeBefore)
+            {
+                lazy[exp] = new Lazy<Task>(async () =>
+                {
+                    await Task.WhenAll(exps.Select(e => lazy[e].Value));
+                    await Task.Yield();
+                    
+                    if (exp.Expression is BinaryExpression)
+                    {
+                        var client = new HttpClient();
+                        var response = await client.GetAsync("http://localhost:5000/calculate?" +
+                                                             $"val1={exps[0].Result}&" +
+                                                             $"operation={GetOperation(exp.Expression)}&" +
+                                                             $"val2={exps[1].Result}");
+
+                        var result = response.Content.ReadAsStringAsync().Result;
+                        var isDouble = Double.TryParse(result, out exp.Result);
+                        
+                        if (!isDouble)
+                            throw new ArgumentException(result);
+                    }
+                });
+            }
+
+            await Task.WhenAll(lazy.Values.Select(l => l.Value));
+            return res;
+        }
     }
 }
