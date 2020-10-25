@@ -110,7 +110,7 @@ namespace ClientExpressions
         private static string GetOperation(Expression expression)
             => expression.NodeType switch
             {
-                ExpressionType.Add => "%2B",
+                ExpressionType.Add => "+",
                 ExpressionType.Subtract => "-",
                 ExpressionType.Multiply => "*",
                 ExpressionType.Divide => "/",
@@ -119,6 +119,7 @@ namespace ClientExpressions
 
         private static async Task<ExpressionResult> ProcessInParallelAsync(Expression expression)
         {
+            var space = "---";
             var visitor = new CalculatorExpressionVisitor();
             var lazy = new Dictionary<ExpressionResult, Lazy<Task>>();
             var executeBefore = visitor.GetExecuteBefore(expression);
@@ -127,16 +128,23 @@ namespace ClientExpressions
             {
                 lazy[exp] = new Lazy<Task>(async () =>
                 {
+                    if (exp.Expression is ConstantExpression)
+                        Console.WriteLine(exp.Expression);
+                    
+                    if (exp.Expression is BinaryExpression)
+                        Console.WriteLine(string.Concat(Enumerable.Range(0, exp.Ranking).Select(i => space)) + GetOperation(exp.Expression));
+                    
                     await Task.WhenAll(exps.Select(e => lazy[e].Value));
                     await Task.Yield();
                     
                     if (exp.Expression is BinaryExpression)
                     {
                         var client = new HttpClient();
-                        var response = await client.GetAsync("http://localhost:5000/calculate?" +
+                        var response = await client.GetAsync(("http://localhost:5000/calculate?" +
                                                              $"val1={exps[0].Result}&" +
                                                              $"operation={GetOperation(exp.Expression)}&" +
-                                                             $"val2={exps[1].Result}");
+                                                             $"val2={exps[1].Result}")
+                                                             .Replace("+", "%2B"));
 
                         var result = response.Content.ReadAsStringAsync().Result;
                         var isDouble = Double.TryParse(result, out exp.Result);

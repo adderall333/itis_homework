@@ -22,18 +22,18 @@ namespace ClientExpressions
             Visit(binaryExpression.Left);
             Visit(binaryExpression.Right);
 
-            executeBefore[ExpressionResult.GetExpressionResult(binaryExpression)] = new[]
-            {
-                ExpressionResult.GetExpressionResult(binaryExpression.Left), 
-                ExpressionResult.GetExpressionResult(binaryExpression.Right)
-            };
+            var left = ExpressionResult.GetExpressionResult(binaryExpression.Left);
+            var right = ExpressionResult.GetExpressionResult(binaryExpression.Right);
+            
+            executeBefore[ExpressionResult.GetExpressionResult(binaryExpression, 
+                Math.Max(left.Ranking, right.Ranking))] = new[] {left, right};
 
             return binaryExpression;
         }
 
         protected override Expression VisitConstant(ConstantExpression constantExpression)
         {
-            executeBefore[ExpressionResult.GetExpressionResult(constantExpression)] = new ExpressionResult[0];
+            executeBefore[ExpressionResult.GetExpressionResult(constantExpression, -1)] = new ExpressionResult[0];
             return constantExpression;
         }
     }

@@ -9,6 +9,7 @@ namespace ClientExpressions
             = new Dictionary<Expression, ExpressionResult>();
         public Expression Expression { get; }
         public double Result;
+        public int Ranking { get; private set; }
 
         private ExpressionResult(Expression expression)
         {
@@ -17,6 +18,17 @@ namespace ClientExpressions
                 Result = (int)constantExpression.Value;
         }
 
+        public static ExpressionResult GetExpressionResult(Expression expression, int previousRanking)
+        {
+            if (Instances.ContainsKey(expression))
+                return Instances[expression];
+            
+            var newExpressionResult = new ExpressionResult(expression);
+            newExpressionResult.Ranking = previousRanking + 1;
+            Instances[expression] = newExpressionResult;
+            return newExpressionResult;
+        }
+        
         public static ExpressionResult GetExpressionResult(Expression expression)
         {
             if (Instances.ContainsKey(expression))
