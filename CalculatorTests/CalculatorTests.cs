@@ -8,6 +8,8 @@ namespace CalculatorTests
 
     class CalculatorTests
     {
+        private static readonly Calculator Calculator = new Calculator();
+        
         [TestCase(1, "+", 2, 3, TestName = "One plus two equals three")]
         [TestCase(2, "-", 1, 1, TestName = "Two minus one equals one")]
         [TestCase(2, "*", 3, 6, TestName = "Two multiply three equals six")]

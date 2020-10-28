@@ -17,37 +17,18 @@ namespace CalculatorASP
 {
     public class Startup
     {
-        private static readonly string[] SupportedOperators = new[] {"+", "-", "*", "/"};
-        
-        private static void Calculate(IApplicationBuilder app)
+        public void Configure(IApplicationBuilder app)
         {
+            app.UseMiddleware<CalculatorMiddleware>();
             app.Run(async context =>
             {
-                var parameters = HttpUtility.ParseQueryString(context.Request.QueryString.Value);
-                double val1, val2;
-                var operation = parameters.Get("operation"); ;
-                if (SupportedOperators.Contains(operation) &&
-                    Double.TryParse(parameters.Get("val1"), out val1) &&
-                    Double.TryParse(parameters.Get("val2"), out val2))
-                {
-                    var result = Calculator.Calculate(val1, operation, val2).ToString();
-                    await context.Response.WriteAsync(result);
-                }
-                else
-                {
-                    await context.Response.WriteAsync("Wrong query.");
-                }
+                await context.Response.WriteAsync("  We happy? ... Vincent? We happy?");
             });
         }
         
-        public void Configure(IApplicationBuilder app)
+        public void ConfigureServices(IServiceCollection services)
         {
-            app.Map("/calculate", Calculate);
-
-            app.Run(async context =>
-            {
-                await context.Response.WriteAsync("Hello from non-Map delegate.");
-            });
-        }    
+            services.AddScoped<ICalculator, Calculator>();
+        }
     }
 }
