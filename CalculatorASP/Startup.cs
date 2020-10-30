@@ -22,7 +22,7 @@ namespace CalculatorASP
             app.UseMiddleware<CalculatorMiddleware>();
             app.Run(async context =>
             {
-                await context.Response.WriteAsync("  We happy? ... Vincent? We happy?");
+                await context.Response.WriteAsync("");
             });
         }
         
