@@ -19,6 +19,8 @@ namespace ClientExpressions
                     i = GoToNextScope(str, i);
                     if (i == -1)
                         return GetExpressionTree(str.Substring(1, str.Length - 2));
+                    if (i >= str.Length)
+                        break;
                 }
 
                 if (LessPriorityOperators.Contains(str[i]))
@@ -36,8 +38,6 @@ namespace ClientExpressions
                 if (str[i] == ')')
                 {
                     i = GoToPreviousScope(str, i);
-                    if (i == -1)
-                        return GetExpressionTree(str.Substring(1, str.Length - 2));
                 }
                 
                 if (MorePriorityOperators.Contains(str[i]))
@@ -48,7 +48,7 @@ namespace ClientExpressions
                 }
             }
 
-            return Expression.Constant(int.Parse(str), typeof(int));
+            return Expression.Constant(double.Parse(str), typeof(double));
         }
         
         public string GetOperation(Expression expression)
@@ -89,9 +89,7 @@ namespace ClientExpressions
                 openCount += str[i] == '(' ? 1 : 0;
                 closeCount += str[i] == ')' ? 1 : 0;
             }
-
-            if (i == 0 && closeScopeIndex == str.Length - 1) 
-                return -1;
+            
             return i - 1;
         }
 

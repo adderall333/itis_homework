@@ -15,7 +15,7 @@ namespace ClientExpressions
         {
             Expression = expression;
             if (expression is ConstantExpression constantExpression)
-                Result = (int)constantExpression.Value;
+                Result = (double)constantExpression.Value;
         }
 
         public static ExpressionResult GetExpressionResult(Expression expression, int previousRanking)

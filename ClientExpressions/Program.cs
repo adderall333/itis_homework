@@ -14,7 +14,6 @@ namespace ClientExpressions
             services.AddSingleton<ICalculator, RemoteCalculator>();
             services.AddSingleton<IExpressionMaker, ExpressionMaker>();
             services.AddSingleton<ILogger, ExpressionLogger>();
-            services.AddSingleton<ExpressionVisitor, CalculatorExpressionVisitor>();
             services.AddSingleton(typeof(TextWriter), Console.Out);
             services.AddSingleton(typeof(TextReader), Console.In);
             (new Client(services)).Start();
