@@ -20,6 +20,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientExpressionsTests", "C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcMovie", "MvcMovie\MvcMovie.csproj", "{5ACA6391-CC3F-4C3F-B480-E51C1A7DFDBE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContosoUniversity", "ContosoUniversity\ContosoUniversity.csproj", "{FBBC5F65-4510-4E85-ACF8-7F331BF62688}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -66,5 +68,9 @@ Global
 		{5ACA6391-CC3F-4C3F-B480-E51C1A7DFDBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5ACA6391-CC3F-4C3F-B480-E51C1A7DFDBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5ACA6391-CC3F-4C3F-B480-E51C1A7DFDBE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FBBC5F65-4510-4E85-ACF8-7F331BF62688}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FBBC5F65-4510-4E85-ACF8-7F331BF62688}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FBBC5F65-4510-4E85-ACF8-7F331BF62688}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FBBC5F65-4510-4E85-ACF8-7F331BF62688}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
