@@ -18,6 +18,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientExpressions", "Client
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientExpressionsTests", "ClientExpressionsTests\ClientExpressionsTests.csproj", "{B676A852-1BAD-4D36-945E-0D47DC8B72B8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcMovie", "MvcMovie\MvcMovie.csproj", "{5ACA6391-CC3F-4C3F-B480-E51C1A7DFDBE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -60,5 +62,9 @@ Global
 		{B676A852-1BAD-4D36-945E-0D47DC8B72B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B676A852-1BAD-4D36-945E-0D47DC8B72B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B676A852-1BAD-4D36-945E-0D47DC8B72B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5ACA6391-CC3F-4C3F-B480-E51C1A7DFDBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5ACA6391-CC3F-4C3F-B480-E51C1A7DFDBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5ACA6391-CC3F-4C3F-B480-E51C1A7DFDBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5ACA6391-CC3F-4C3F-B480-E51C1A7DFDBE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
