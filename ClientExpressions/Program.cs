@@ -1,6 +1,8 @@
 ﻿using System;
-using System.Linq;
-using System.Net.Http;
+using System.IO;
+using System.Linq.Expressions;
+using homework_1;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace ClientExpressions
 {
@@ -8,8 +10,13 @@ namespace ClientExpressions
     {
         static void Main(string[] args)
         {
-            //var query = Console.ReadLine();
-            Console.WriteLine(Calculator.CalculateAsync("(2+3)/12*7+8*9").Result);
+            var services = new ServiceCollection();
+            services.AddSingleton<ICalculator, RemoteCalculator>();
+            services.AddSingleton<IExpressionMaker, ExpressionMaker>();
+            services.AddSingleton<ILogger, ExpressionLogger>();
+            services.AddSingleton(typeof(TextWriter), Console.Out);
+            services.AddSingleton(typeof(TextReader), Console.In);
+            (new Client(services)).Start();
         }
     }
 }

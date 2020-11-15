@@ -61,5 +61,10 @@ module Program =
         let val1 = Console.ReadLine()
         let operator = Console.ReadLine().Replace("+", "%2B")
         let val2 = Console.ReadLine()
-        Console.WriteLine(Calculate val1 operator val2)
+        
+        //here is DI
+        let calculateWithPluggableCalculator calculator val1 operator val2 =
+            calculator val1 operator val2
+        
+        Console.WriteLine(calculateWithPluggableCalculator Calculate val1 operator val2)
         0 // return an integer exit code
