@@ -12,7 +12,7 @@ namespace ClientExpressions
 {
     public class Client
     {
-        private static ServiceProvider _serviceProvider;
+        private readonly ServiceProvider _serviceProvider;
 
         public Client(ServiceCollection services)
         {
@@ -46,7 +46,7 @@ namespace ClientExpressions
             return result.Result;
         }
 
-        private static async Task<ExpressionResult> ProcessInParallelAsync(Expression expression)
+        private async Task<ExpressionResult> ProcessInParallelAsync(Expression expression)
         {
             var calculator = _serviceProvider.GetService<ICalculator>();
             var expressionMaker = _serviceProvider.GetService<IExpressionMaker>();
