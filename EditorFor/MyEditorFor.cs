@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using Microsoft.AspNetCore.DataProtection.XmlEncryption;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
 namespace EditorFor
 {
@@ -20,7 +22,6 @@ namespace EditorFor
             return content;
         }
         
-        private static readonly HashSet<Type> ProcessedTypes = new HashSet<Type>();
         private static readonly Dictionary<Type, string> InputTypes = new Dictionary<Type, string>
         {
             {typeof(int), "number"},
@@ -32,33 +33,34 @@ namespace EditorFor
         public static IEnumerable<string> GetForm(object obj)
         {
             var type = obj.GetType();
-            ProcessedTypes.Add(type);
             foreach (var str in type
                 .GetProperties(BindingFlags.Public | BindingFlags.Instance)
-                .SelectMany(p => Process(p, obj)))
+                .SelectMany(p => Process(new PropertyNode(p, obj, new Type[0]))))
                 yield return str;
         }
         
-        private static IEnumerable<string> Process(PropertyInfo property, object obj)
+        private static IEnumerable<string> Process(PropertyNode node)
         {
-            var type = property.PropertyType;
-            yield return $"<div class='editor-label'><label for='{property.Name}'>{property.Name}</label></div>";
+            var type = node.Property.PropertyType;
+            yield return $"<div class='editor-label'><label for='{node.Property.Name}'>{node.Property.Name}</label></div>";
 
             if (InputTypes.Keys.Contains(type))
             {
-                yield return GetInput(property, obj);
+                yield return GetInput(node.Property, node.Parent);
             }
             else if (type.IsEnum)
             {
-                yield return GetSelect(property, obj);
+                yield return GetSelect(node.Property, node.Parent);
             }
             else if (type.IsClass)
             {
-                CheckType(type);
-                ProcessedTypes.Add(type);
+                node.CheckType(type);
+                node.AddType(type);
                 foreach (var str in type
                     .GetProperties(BindingFlags.Public | BindingFlags.Instance)
-                    .SelectMany(p => Process(p, property.GetValue(obj))))
+                    .SelectMany(p => Process(new PropertyNode(p, node.GetValue(), node
+                        .PreviousNodeTypes
+                        .Append(node.Property.PropertyType)))))
                     yield return str;
             }
             else
@@ -103,11 +105,36 @@ namespace EditorFor
             return property.PropertyType == typeof(bool) && 
                    (bool) property.GetValue(obj) ? " checked" : "";
         }
+    }
+
+    class PropertyNode
+    {
+        public HashSet<Type> PreviousNodeTypes { get; set; }
+        public PropertyInfo Property { get; set; }
+        public object Parent { get; set; }
         
-        private static void CheckType(Type type)
+
+        public PropertyNode(PropertyInfo property, object parent, IEnumerable<Type> previousNodeTypes)
         {
-            if (ProcessedTypes.Contains(type))
+            Property = property;
+            Parent = parent;
+            PreviousNodeTypes = new HashSet<Type>(previousNodeTypes);
+        }
+        
+        public void CheckType(Type type)
+        {
+            if (PreviousNodeTypes.Contains(type))
                 throw new NotSupportedException("Произошло зацикливание");
         }
-    }
+        
+        public void AddType(Type type)
+        {
+            PreviousNodeTypes.Add(type);
+        }
+
+        public object GetValue()
+        {
+            return Property.GetValue(Parent);
+        }
+    } 
 }
