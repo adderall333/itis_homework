@@ -35,7 +35,7 @@ namespace EditorFor
             var type = obj.GetType();
             foreach (var str in type
                 .GetProperties(BindingFlags.Public | BindingFlags.Instance)
-                .SelectMany(p => Process(new PropertyNode(p, obj, new Type[0]))))
+                .SelectMany(p => Process(new PropertyNode(p, obj, new []{type}))))
                 yield return str;
         }
         
@@ -55,12 +55,11 @@ namespace EditorFor
             else if (type.IsClass)
             {
                 node.CheckType(type);
-                node.AddType(type);
                 foreach (var str in type
                     .GetProperties(BindingFlags.Public | BindingFlags.Instance)
                     .SelectMany(p => Process(new PropertyNode(p, node.GetValue(), node
                         .PreviousNodeTypes
-                        .Append(node.Property.PropertyType)))))
+                        .Append(type)))))
                     yield return str;
             }
             else
@@ -125,11 +124,6 @@ namespace EditorFor
         {
             if (PreviousNodeTypes.Contains(type))
                 throw new NotSupportedException("Произошло зацикливание");
-        }
-        
-        public void AddType(Type type)
-        {
-            PreviousNodeTypes.Add(type);
         }
 
         public object GetValue()
