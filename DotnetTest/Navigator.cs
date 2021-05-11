@@ -2,17 +2,6 @@
 
 namespace DotnetTest
 {
-    public class Route
-    {
-    }
-
-    public enum RouteStrategy
-    {
-        Road,
-        PublicTransport,
-        Walking
-    }
-    
     public class Navigator
     {
         public Route BuildRoute(RouteStrategy routeStrategy)
