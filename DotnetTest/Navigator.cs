@@ -4,15 +4,16 @@ namespace DotnetTest
 {
     public class Navigator
     {
-        public Route BuildRoute(RouteStrategy routeStrategy)
+        private readonly IRouteStrategy _routeStrategy;
+
+        public Navigator(IRouteStrategy routeStrategy)
         {
-            return routeStrategy switch
-            {
-                RouteStrategy.Road => new Route(),
-                RouteStrategy.Walking => new Route(),
-                RouteStrategy.PublicTransport => new Route(),
-                _ => throw new ArgumentOutOfRangeException(nameof(routeStrategy), routeStrategy, null)
-            };
+            _routeStrategy = routeStrategy;
+        }
+
+        public Route BuildRoute()
+        {
+            return _routeStrategy.BuildRoute();
         }
     }
 }
