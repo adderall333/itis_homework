@@ -8,9 +8,9 @@ namespace DotnetTest
         {
             return routeStrategy switch
             {
-                RouteStrategy.Road => new Route(),
-                RouteStrategy.Walking => new Route(),
-                RouteStrategy.PublicTransport => new Route(),
+                RouteStrategy.Road => new Route("Ехать на машине вперёд"),
+                RouteStrategy.Walking => new Route("Идти пешком вперёд"),
+                RouteStrategy.PublicTransport => new Route("Ехать на автобусе вперёд"),
                 _ => throw new ArgumentOutOfRangeException(nameof(routeStrategy), routeStrategy, null)
             };
         }
